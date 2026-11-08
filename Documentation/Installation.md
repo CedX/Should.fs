@@ -17,7 +17,7 @@ dotnet --version
 From a command prompt, run:
 
 ```powershell
-dotnet package add Belin.Should.FSharp
+dotnet package add Belin.Should
 ```
 
 ### 2. Import it

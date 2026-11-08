@@ -4,7 +4,7 @@ open Microsoft.VisualStudio.TestTools.UnitTesting
 
 /// Tests the features of the `ShouldAsync` module.
 [<TestClass>]
-type ShouldAsync() =
+type ShouldAsyncTests() =
 
   [<TestMethod>]
   member _.TestTODO() =

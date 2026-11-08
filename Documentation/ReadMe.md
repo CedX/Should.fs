@@ -7,7 +7,7 @@ for [F#](https://learn.microsoft.com/en-us/dotnet/fsharp).
 Install the latest version of **BDD assertions for MSTest** with [NuGet](https://www.nuget.org) package manager:
 
 ```powershell
-dotnet package add Belin.Should.FSharp
+dotnet package add Belin.Should
 ```
 
 For detailed instructions, see the [installation guide](Installation.md).
