@@ -40,6 +40,7 @@ type AsyncShouldTests() =
   member _.BeEmpty(): Task = task {
     do! shouldSucceed (fun () -> async { return "" :> char seq } |> AsyncShould.beEmpty)
     do! shouldSucceed (fun () -> async { return [] :> string seq } |> AsyncShould.beEmpty)
+
     do! shouldFail (fun () -> async { return "foo" :> char seq } |> AsyncShould.beEmpty)
     do! shouldFail (fun () -> async { return [""] :> string seq } |> AsyncShould.beEmpty)
   }
