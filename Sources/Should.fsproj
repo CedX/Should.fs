@@ -40,6 +40,7 @@
 
 	<ItemGroup>
 		<Compile Include="Should.fs" />
-		<Compile Include="ShouldAsync.fs" />
+		<Compile Include="Should.Async.fs" />
+		<Compile Include="Should.Task.fs" />
 	</ItemGroup>
 </Project>
