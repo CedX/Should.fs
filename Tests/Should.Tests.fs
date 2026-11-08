@@ -23,8 +23,19 @@ type ShouldTests() =
       Assert.IsNotInstanceOfType<AssertFailedException> ex
 
   [<TestMethod>]
+  member _.Be() =
+    shouldSucceed (fun () -> true |> Should.be true)
+    shouldSucceed (fun () -> 123 |> Should.be 123)
+    shouldSucceed (fun () -> "foo" |> Should.be "foo")
+
+    shouldFail (fun () -> false |> Should.be true)
+    shouldFail (fun () -> 456 |> Should.be 123)
+    shouldFail (fun () -> "bar" |> Should.be "foo")
+
+  [<TestMethod>]
   member _.BeEmpty() =
-    shouldFail (fun () -> "foo" |> Should.beEmpty)
-    shouldFail (fun () -> [""] |> Should.beEmpty)
     shouldSucceed (fun () -> "" |> Should.beEmpty)
     shouldSucceed (fun () -> [] |> Should.beEmpty)
+
+    shouldFail (fun () -> "foo" |> Should.beEmpty)
+    shouldFail (fun () -> [""] |> Should.beEmpty)

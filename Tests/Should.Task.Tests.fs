@@ -26,9 +26,21 @@ type ShouldAsyncTests() =
   }
 
   [<TestMethod>]
+  member _.Be(): Task = task {
+    do! shouldSucceed (fun () -> task { return true } |> ShouldAsync.be true)
+    do! shouldSucceed (fun () -> task { return 123 } |> ShouldAsync.be 123)
+    do! shouldSucceed (fun () -> task { return "foo" } |> ShouldAsync.be "foo")
+
+    do! shouldFail (fun () -> task { return false } |> ShouldAsync.be true)
+    do! shouldFail (fun () -> task { return 456 } |> ShouldAsync.be 123)
+    do! shouldFail (fun () -> task { return "bar" } |> ShouldAsync.be "foo")
+  }
+
+  [<TestMethod>]
   member _.BeEmpty(): Task = task {
     do! shouldSucceed (fun () -> task { return "" :> char seq } |> ShouldAsync.beEmpty)
     do! shouldSucceed (fun () -> task { return [] :> string seq } |> ShouldAsync.beEmpty)
+
     do! shouldFail (fun () -> task { return "foo" :> char seq } |> ShouldAsync.beEmpty)
     do! shouldFail (fun () -> task { return [""] :> string seq } |> ShouldAsync.beEmpty)
   }
