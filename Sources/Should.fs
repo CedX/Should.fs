@@ -18,7 +18,7 @@ module Should =
 
   /// Tests whether the specified sequence is empty.
   let beEmpty (sequence: 'T seq) =
-    Assert.IsEmpty sequence
+    Assert.IsEmpty<'T> sequence
 
   /// Tests whether the specified condition is false.
   let beFalse (condition: bool) =
@@ -26,19 +26,19 @@ module Should =
 
   /// Tests whether the given value is greater than the specified lower bound.
   let beGreaterThan (lowerBound: 'T) (value: 'T) =
-    Assert.IsGreaterThan(lowerBound, value)
+    Assert.IsGreaterThan<'T>(lowerBound, value)
 
   /// Tests whether the given value is greater than or equal to the specified lower bound.
   let beGreaterThanOrEqualTo (lowerBound: 'T) (value: 'T) =
-    Assert.IsGreaterThanOrEqualTo(lowerBound, value)
+    Assert.IsGreaterThanOrEqualTo<'T>(lowerBound, value)
 
   /// Tests whether the given value is less than the specified upper bound.
   let beLessThan (upperBound: 'T) (value: 'T) =
-    Assert.IsLessThan(upperBound, value)
+    Assert.IsLessThan<'T>(upperBound, value)
 
   /// Tests whether the given value is less than or equal to the specified upper bound.
   let beLessThanOrEqualTo (upperBound: 'T) (value: 'T) =
-    Assert.IsLessThanOrEqualTo(upperBound, value)
+    Assert.IsLessThanOrEqualTo<'T>(upperBound, value)
 
   /// Tests whether the specified object is `null`.
   let beNull (value: 'T) =
@@ -54,7 +54,7 @@ module Should =
 
   /// Tests whether two sequences contain equal elements in the same order.
   let beSequence (expected: 'T seq) (actual: 'T seq) =
-    Assert.AreSequenceEqual(expected, actual)
+    Assert.AreSequenceEqual<'T>(expected, actual)
 
   /// Tests whether the specified condition is true.
   let beTrue (condition: bool) =
