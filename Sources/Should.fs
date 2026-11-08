@@ -6,7 +6,7 @@ open System.Text.RegularExpressions
 
 /// Contains assertions for working with unit tests.
 [<RequireQualifiedAccess>]
-module internal Should =
+module Should =
 
   /// Tests whether the specified values are equal.
   let be (expected: 'T) (actual: 'T) =

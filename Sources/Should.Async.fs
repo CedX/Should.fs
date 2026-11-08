@@ -5,7 +5,7 @@ open System.Text.RegularExpressions
 
 /// Contains asynchronous assertions for working with unit tests.
 [<RequireQualifiedAccess>]
-module internal AsyncShould =
+module AsyncShould =
 
   /// Tests whether the specified values are equal.
   let be (expected: 'T) (actual: Async<'T>) = task {

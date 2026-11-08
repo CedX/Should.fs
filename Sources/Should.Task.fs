@@ -6,7 +6,7 @@ open System.Threading.Tasks
 
 /// Contains asynchronous assertions for working with unit tests.
 [<RequireQualifiedAccess>]
-module internal ShouldAsync =
+module ShouldAsync =
 
   /// Tests whether the specified values are equal.
   let be (expected: 'T) (actual: Task<'T>) = task {
