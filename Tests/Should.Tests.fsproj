@@ -2,7 +2,7 @@
 	<PropertyGroup>
 		<Company>Cedric-Belin.fr</Company>
 		<Copyright>© Cédric Belin</Copyright>
-		<Description>A thin BDD wrapper around MSTest assertions.</Description>
+		<Description>A thin BDD wrapper around MSTest assertions, for F#.</Description>
 		<Product>BDD assertions for MSTest</Product>
 		<Version>2026.11.0</Version>
 	</PropertyGroup>
