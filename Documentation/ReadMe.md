@@ -18,7 +18,7 @@ Are you tired of writing your [MSTest](https://learn.microsoft.com/en-us/dotnet/
 ```fsharp
 open Microsoft.VisualStudio.TestTools.UnitTesting
 
-Assert.IsTrue true
+Assert.IsTrue condition
 Assert.AreEqual(expected, actual)
 Assert.IsGreaterThan(lowerBound, value)
 Assert.Contains(value, collection)
@@ -34,7 +34,7 @@ Why not try this instead?
 open Belin.Should
 open Microsoft.VisualStudio.TestTools.UnitTesting
 
-true |> Should.beTrue
+condition |> Should.beTrue
 actual |> Should.be expected
 value |> Should.beGreaterThan lowerBound
 value |> Should.beOneOf collection
