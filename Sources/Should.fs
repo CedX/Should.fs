@@ -60,9 +60,9 @@ module Should =
   let beTrue (condition: bool) =
     Assert.IsTrue condition
 
-  /// Tests whether the specified collection contains the given element.
-  let contain<'T> (expected: 'T) (collection: 'T seq) =
-    Assert.Contains<'T>(expected, collection)
+  /// Tests whether the specified sequence contains the given element.
+  let contain<'T> (expected: 'T) (sequence: 'T seq) =
+    Assert.Contains<'T>(expected, sequence)
 
   /// Tests whether the specified string contains the given substring.
   let containString (substring: string) (value: string) =
@@ -84,9 +84,9 @@ module Should =
   let notBeNull (value: objnull) =
     Assert.IsNotNull value
 
-  /// Tests whether the specified collection does not contain the given element.
-  let notContain<'T> (expected: 'T) (collection: 'T seq) =
-    Assert.DoesNotContain<'T>(expected, collection)
+  /// Tests whether the specified sequence does not contain the given element.
+  let notContain<'T> (expected: 'T) (sequence: 'T seq) =
+    Assert.DoesNotContain<'T>(expected, sequence)
 
   /// Tests whether the specified string does not contain the given substring.
   let notContainString (substring: string) (value: string) =

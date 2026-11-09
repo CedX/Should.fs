@@ -21,8 +21,8 @@ open Microsoft.VisualStudio.TestTools.UnitTesting
 Assert.IsTrue condition
 Assert.AreEqual(expected, actual)
 Assert.IsGreaterThan(lowerBound, value)
-Assert.Contains(value, collection)
-Assert.HasCount(expected, collection)
+Assert.Contains(value, sequence)
+Assert.HasCount(expected, sequence)
 Assert.EndsWith(suffix, value)
 Assert.IsInstanceOfType<IDisposable> value
 Assert.Throws<Exception> action
@@ -37,8 +37,8 @@ open Microsoft.VisualStudio.TestTools.UnitTesting
 condition |> Should.beTrue
 actual |> Should.be expected
 value |> Should.beGreaterThan lowerBound
-value |> Should.beOneOf collection
-collection |> Seq.length |> Should.be expected
+value |> Should.beOneOf sequence
+sequence |> Seq.length |> Should.be expected
 value |> Should.endWith suffix
 value |> Should.beAssignableTo<IDisposable>
 action |> Should.throw<Exception>

@@ -85,10 +85,10 @@ module AsyncShould =
     return Should.beTrue condition
   }
 
-  /// Tests whether the specified collection contains the given element.
-  let contain<'T> (expected: 'T) (collection: Async<'T seq>) = async {
-    let! collection = collection
-    return collection |> Should.contain<'T> expected
+  /// Tests whether the specified sequence contains the given element.
+  let contain<'T> (expected: 'T) (sequence: Async<'T seq>) = async {
+    let! sequence = sequence
+    return sequence |> Should.contain<'T> expected
   }
 
   /// Tests whether the specified string contains the given substring.
@@ -121,10 +121,10 @@ module AsyncShould =
     return Should.notBeNull value
   }
 
-  /// Tests whether the specified collection does not contain the given element.
-  let notContain<'T> (expected: 'T) (collection: Async<'T seq>) = async {
-    let! collection = collection
-    return collection |> Should.notContain<'T> expected
+  /// Tests whether the specified sequence does not contain the given element.
+  let notContain<'T> (expected: 'T) (sequence: Async<'T seq>) = async {
+    let! sequence = sequence
+    return sequence |> Should.notContain<'T> expected
   }
 
   /// Tests whether the specified string does not contain the given substring.
