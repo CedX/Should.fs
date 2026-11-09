@@ -44,8 +44,12 @@ type ShouldTests() =
 
   [<TestMethod>]
   member _.BeOfType() =
+    shouldSucceed (fun () -> Should.beOfType<bool> false)
+    shouldSucceed (fun () -> Should.beOfType<Option<bool>> (Some false))
     shouldSucceed (fun () -> Should.beOfType<string> "123")
     shouldSucceed (fun () -> Should.beOfType<int> 123)
 
+    shouldFail (fun () -> Should.beOfType<bool> 0)
+    shouldFail (fun () -> Should.beOfType<Option<bool>> (Some 0))
     shouldFail (fun () -> Should.beOfType<int> "123")
     shouldFail (fun () -> Should.beOfType<string> 123)

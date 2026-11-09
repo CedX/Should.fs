@@ -46,3 +46,16 @@ type AsyncShouldTests() =
     do! shouldFail (fun () -> async { return "foo" :> char seq } |> AsyncShould.beEmpty)
     do! shouldFail (fun () -> async { return [""] :> string seq } |> AsyncShould.beEmpty)
   }
+
+  [<TestMethod>]
+  member _.BeOfType(): Task = task {
+    do! shouldSucceed (fun () -> async { return false :> objnull } |> AsyncShould.beOfType<bool>)
+    do! shouldSucceed (fun () -> async { return Some false :> objnull } |> AsyncShould.beOfType<Option<bool>>)
+    do! shouldSucceed (fun () -> async { return "123" :> objnull } |> AsyncShould.beOfType<string>)
+    do! shouldSucceed (fun () -> async { return 123 :> objnull } |> AsyncShould.beOfType<int>)
+
+    do! shouldFail (fun () -> async { return 0 :> objnull } |> AsyncShould.beOfType<bool>)
+    do! shouldFail (fun () -> async { return Some 0 :> objnull } |> AsyncShould.beOfType<Option<bool>>)
+    do! shouldFail (fun () -> async { return "123" :> objnull } |> AsyncShould.beOfType<int>)
+    do! shouldFail (fun () -> async { return 123 :> objnull } |> AsyncShould.beOfType<string>)
+  }
