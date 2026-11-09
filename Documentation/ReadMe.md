@@ -39,7 +39,7 @@ actual |> Should.be expected
 value |> Should.beGreaterThan lowerBound
 value |> Should.beOneOf collection
 collection |> Seq.length |> Should.be expected
-value |> Should.endWith
+value |> Should.endWith suffix
 value |> Should.beAssignableTo<IDisposable>
 action |> Should.throw<Exception>
 ```
