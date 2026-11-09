@@ -14,9 +14,9 @@ module AsyncShould =
   }
 
   /// Tests whether the specified object is an instance of the expected type.
-  let beAssignableTo<'T> (value: Async<'T>) = async {
+  let beAssignableTo<'T> (value: Async<objnull>) = async {
     let! value = value
-    return value |> Should.beAssignableTo<'T>
+    return Should.beAssignableTo<'T> value
   }
 
   /// Tests whether the specified sequence is empty.
@@ -62,9 +62,9 @@ module AsyncShould =
   }
 
   /// Tests whether the specified object is exactly an instance of the expected type.
-  let beOfType<'T> (value: Async<'T>) = async {
+  let beOfType<'T> (value: Async<objnull>) = async {
     let! value = value
-    return value |> Should.beOfType<'T>
+    return Should.beOfType<'T> value
   }
 
   /// Tests whether the specified value is contained in the given sequence.

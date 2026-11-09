@@ -36,8 +36,16 @@ type ShouldTests() =
 
   [<TestMethod>]
   member _.BeEmpty() =
-    shouldSucceed (fun () -> "" |> Should.beEmpty)
-    shouldSucceed (fun () -> [] |> Should.beEmpty)
+    shouldSucceed (fun () -> Should.beEmpty "")
+    shouldSucceed (fun () -> Should.beEmpty [])
 
-    shouldFail (fun () -> "foo" |> Should.beEmpty)
-    shouldFail (fun () -> [""] |> Should.beEmpty)
+    shouldFail (fun () -> Should.beEmpty "foo")
+    shouldFail (fun () -> Should.beEmpty [""])
+
+  [<TestMethod>]
+  member _.BeOfType() =
+    shouldSucceed (fun () -> Should.beOfType<string> "123")
+    shouldSucceed (fun () -> Should.beOfType<int> 123)
+
+    shouldFail (fun () -> Should.beOfType<int> "123")
+    shouldFail (fun () -> Should.beOfType<string> 123)
