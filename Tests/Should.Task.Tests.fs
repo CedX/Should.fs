@@ -30,10 +30,12 @@ type ShouldAsyncTests() =
     do! shouldSucceed (fun () -> task { return true } |> ShouldAsync.be true)
     do! shouldSucceed (fun () -> task { return 123 } |> ShouldAsync.be 123)
     do! shouldSucceed (fun () -> task { return "foo" } |> ShouldAsync.be "foo")
+    do! shouldSucceed (fun () -> task { return Some "foo" } |> ShouldAsync.be (Some "foo"))
 
     do! shouldFail (fun () -> task { return false } |> ShouldAsync.be true)
     do! shouldFail (fun () -> task { return 456 } |> ShouldAsync.be 123)
     do! shouldFail (fun () -> task { return "bar" } |> ShouldAsync.be "foo")
+    do! shouldFail (fun () -> task { return None } |> ShouldAsync.be (Some "foo"))
   }
 
   [<TestMethod>]

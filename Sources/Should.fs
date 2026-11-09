@@ -9,15 +9,15 @@ open System.Text.RegularExpressions
 module Should =
 
   /// Tests whether the specified values are equal.
-  let be (expected: 'T) (actual: 'T) =
+  let be<'T> (expected: 'T) (actual: 'T) =
     Assert.AreEqual<'T>(expected, actual)
 
   /// Tests whether the specified object is an instance of the expected type.
-  let beAssignableTo (expectedType: Type) (value: 'T) =
-    Assert.IsInstanceOfType(value, expectedType)
+  let beAssignableTo<'T> (value: 'T) =
+    Assert.IsInstanceOfType<'T> value
 
   /// Tests whether the specified sequence is empty.
-  let beEmpty (sequence: 'T seq) =
+  let beEmpty<'T> (sequence: 'T seq) =
     Assert.IsEmpty<'T> sequence
 
   /// Tests whether the specified condition is false.
@@ -25,35 +25,35 @@ module Should =
     Assert.IsFalse condition
 
   /// Tests whether the given value is greater than the specified lower bound.
-  let beGreaterThan (lowerBound: 'T) (value: 'T) =
+  let beGreaterThan<'T when 'T :> IComparable<'T>> (lowerBound: 'T) (value: 'T) =
     Assert.IsGreaterThan<'T>(lowerBound, value)
 
   /// Tests whether the given value is greater than or equal to the specified lower bound.
-  let beGreaterThanOrEqualTo (lowerBound: 'T) (value: 'T) =
+  let beGreaterThanOrEqualTo<'T when 'T :> IComparable<'T>> (lowerBound: 'T) (value: 'T) =
     Assert.IsGreaterThanOrEqualTo<'T>(lowerBound, value)
 
   /// Tests whether the given value is less than the specified upper bound.
-  let beLessThan (upperBound: 'T) (value: 'T) =
+  let beLessThan<'T when 'T :> IComparable<'T>> (upperBound: 'T) (value: 'T) =
     Assert.IsLessThan<'T>(upperBound, value)
 
   /// Tests whether the given value is less than or equal to the specified upper bound.
-  let beLessThanOrEqualTo (upperBound: 'T) (value: 'T) =
+  let beLessThanOrEqualTo<'T when 'T :> IComparable<'T>> (upperBound: 'T) (value: 'T) =
     Assert.IsLessThanOrEqualTo<'T>(upperBound, value)
 
   /// Tests whether the specified object is `null`.
-  let beNull (value: 'T) =
+  let beNull (value: objnull) =
     Assert.IsNull value
 
   /// Tests whether the specified object is exactly an instance of the expected type.
-  let beOfType (expectedType: Type) (value: 'T) =
-    Assert.IsExactInstanceOfType(value, expectedType)
+  let beOfType<'T> (value: 'T) =
+    Assert.IsExactInstanceOfType<'T> value |> ignore<'T>
 
   /// Tests whether the specified value is contained in the given sequence.
-  let beOneOf (sequence: 'T seq) (value: 'T) =
+  let beOneOf<'T> (sequence: 'T seq) (value: 'T) =
     Assert.Contains<'T>(value, sequence)
 
   /// Tests whether two sequences contain equal elements in the same order.
-  let beSequence (expected: 'T seq) (actual: 'T seq) =
+  let beSequence<'T> (expected: 'T seq) (actual: 'T seq) =
     Assert.AreSequenceEqual<'T>(expected, actual)
 
   /// Tests whether the specified condition is true.
@@ -61,7 +61,7 @@ module Should =
     Assert.IsTrue condition
 
   /// Tests whether the specified collection contains the given element.
-  let contain (expected: 'T) (collection: 'T seq) =
+  let contain<'T> (expected: 'T) (collection: 'T seq) =
     Assert.Contains<'T>(expected, collection)
 
   /// Tests whether the specified string contains the given substring.
@@ -77,15 +77,15 @@ module Should =
     Assert.MatchesRegex(pattern, value)
 
   /// Tests whether the specified values are unequal.
-  let notBe (notExpected: 'T) (actual: 'T) =
+  let notBe<'T> (notExpected: 'T) (actual: 'T) =
     Assert.AreNotEqual<'T>(notExpected, actual)
 
   /// Tests whether the specified object is not `null`.
-  let notBeNull (value: 'T) =
+  let notBeNull (value: objnull) =
     Assert.IsNotNull value
 
   /// Tests whether the specified collection does not contain the given element.
-  let notContain (expected: 'T) (collection: 'T seq) =
+  let notContain<'T> (expected: 'T) (collection: 'T seq) =
     Assert.DoesNotContain<'T>(expected, collection)
 
   /// Tests whether the specified string does not contain the given substring.
@@ -97,21 +97,21 @@ module Should =
     Assert.DoesNotMatchRegex(pattern, value)
 
   /// Tests whether the specified action does not throw an exception of the expected type.
-  let notThrow (exceptionType: Type) (action: unit -> unit) =
+  let notThrow<'T> (action: unit -> unit) =
     try
       action()
       Assert.IsTrue true
     with ex ->
-      Assert.IsNotInstanceOfType(ex, exceptionType)
+      Assert.IsNotInstanceOfType<'T> ex
 
   /// Tests whether the specified string begins with the given prefix.
   let startWith (expectedPrefix: string) (value: string) =
     Assert.StartsWith(expectedPrefix, value)
 
   /// Tests whether the specified action throws an exception of the expected type.
-  let throw (exceptionType: Type) (action: unit -> unit) =
+  let throw<'T> (action: unit -> unit) =
     try
       action()
       Assert.Fail "The specified action did not throw any exception."
     with ex ->
-      Assert.IsInstanceOfType(ex, exceptionType)
+      Assert.IsInstanceOfType<'T> ex |> ignore<'T>

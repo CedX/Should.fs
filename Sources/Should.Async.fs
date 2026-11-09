@@ -8,21 +8,21 @@ open System.Text.RegularExpressions
 module AsyncShould =
 
   /// Tests whether the specified values are equal.
-  let be (expected: 'T) (actual: Async<'T>) = async {
+  let be<'T> (expected: 'T) (actual: Async<'T>) = async {
     let! actual = actual
-    return actual |> Should.be expected
+    return actual |> Should.be<'T> expected
   }
 
   /// Tests whether the specified object is an instance of the expected type.
-  let beAssignableTo (expectedType: Type) (value: Async<'T>) = async {
+  let beAssignableTo<'T> (value: Async<'T>) = async {
     let! value = value
-    return value |> Should.beAssignableTo expectedType
+    return value |> Should.beAssignableTo<'T>
   }
 
   /// Tests whether the specified sequence is empty.
-  let beEmpty (sequence: Async<'T seq>) = async {
+  let beEmpty<'T> (sequence: Async<'T seq>) = async {
     let! sequence = sequence
-    return Should.beEmpty sequence
+    return Should.beEmpty<'T> sequence
   }
 
   /// Tests whether the specified condition is false.
@@ -32,51 +32,51 @@ module AsyncShould =
   }
 
   /// Tests whether the given value is greater than the specified lower bound.
-  let beGreaterThan (lowerBound: 'T) (value: Async<'T>) = async {
+  let beGreaterThan<'T when 'T :> IComparable<'T>> (lowerBound: 'T) (value: Async<'T>) = async {
     let! value = value
-    return value |> Should.beGreaterThan lowerBound
+    return value |> Should.beGreaterThan<'T> lowerBound
   }
 
   /// Tests whether the given value is greater than or equal to the specified lower bound.
-  let beGreaterThanOrEqualTo (lowerBound: 'T) (value: Async<'T>) = async {
+  let beGreaterThanOrEqualTo<'T when 'T :> IComparable<'T>> (lowerBound: 'T) (value: Async<'T>) = async {
     let! value = value
-    return value |> Should.beGreaterThanOrEqualTo lowerBound
+    return value |> Should.beGreaterThanOrEqualTo<'T> lowerBound
   }
 
   /// Tests whether the given value is less than the specified upper bound.
-  let beLessThan (upperBound: 'T) (value: Async<'T>) = async {
+  let beLessThan<'T when 'T :> IComparable<'T>> (upperBound: 'T) (value: Async<'T>) = async {
     let! value = value
-    return value |> Should.beLessThan upperBound
+    return value |> Should.beLessThan<'T> upperBound
   }
 
   /// Tests whether the given value is less than or equal to the specified upper bound.
-  let beLessThanOrEqualTo (upperBound: 'T) (value: Async<'T>) = async {
+  let beLessThanOrEqualTo<'T when 'T :> IComparable<'T>> (upperBound: 'T) (value: Async<'T>) = async {
     let! value = value
-    return value |> Should.beLessThanOrEqualTo upperBound
+    return value |> Should.beLessThanOrEqualTo<'T> upperBound
   }
 
   /// Tests whether the specified object is `null`.
-  let beNull (value: Async<'T>) = async {
+  let beNull (value: Async<objnull>) = async {
     let! value = value
     return Should.beNull value
   }
 
   /// Tests whether the specified object is exactly an instance of the expected type.
-  let beOfType (expectedType: Type) (value: Async<'T>) = async {
+  let beOfType<'T> (value: Async<'T>) = async {
     let! value = value
-    return value |> Should.beOfType expectedType
+    return value |> Should.beOfType<'T>
   }
 
   /// Tests whether the specified value is contained in the given sequence.
-  let beOneOf (sequence: 'T seq) (value: Async<'T>) = async {
+  let beOneOf<'T> (sequence: 'T seq) (value: Async<'T>) = async {
     let! value = value
-    return value |> Should.beOneOf sequence
+    return value |> Should.beOneOf<'T> sequence
   }
 
   /// Tests whether two sequences contain equal elements in the same order.
-  let beSequence (expected: 'T seq) (actual: Async<'T seq>) = async {
+  let beSequence<'T> (expected: 'T seq) (actual: Async<'T seq>) = async {
     let! actual = actual
-    return actual |> Should.beSequence expected
+    return actual |> Should.beSequence<'T> expected
   }
 
   /// Tests whether the specified condition is true.
@@ -86,9 +86,9 @@ module AsyncShould =
   }
 
   /// Tests whether the specified collection contains the given element.
-  let contain (expected: 'T) (collection: Async<'T seq>) = async {
+  let contain<'T> (expected: 'T) (collection: Async<'T seq>) = async {
     let! collection = collection
-    return collection |> Should.contain expected
+    return collection |> Should.contain<'T> expected
   }
 
   /// Tests whether the specified string contains the given substring.
@@ -110,21 +110,21 @@ module AsyncShould =
   }
 
   /// Tests whether the specified values are unequal.
-  let notBe (notExpected: 'T) (actual: Async<'T>) = async {
+  let notBe<'T> (notExpected: 'T) (actual: Async<'T>) = async {
     let! actual = actual
-    return actual |> Should.notBe notExpected
+    return actual |> Should.notBe<'T> notExpected
   }
 
   /// Tests whether the specified object is not `null`.
-  let notBeNull (value: Async<'T>) = async {
+  let notBeNull (value: Async<objnull>) = async {
     let! value = value
     return Should.notBeNull value
   }
 
   /// Tests whether the specified collection does not contain the given element.
-  let notContain (expected: 'T) (collection: Async<'T seq>) = async {
+  let notContain<'T> (expected: 'T) (collection: Async<'T seq>) = async {
     let! collection = collection
-    return collection |> Should.notContain expected
+    return collection |> Should.notContain<'T> expected
   }
 
   /// Tests whether the specified string does not contain the given substring.

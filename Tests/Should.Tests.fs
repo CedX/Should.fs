@@ -27,10 +27,12 @@ type ShouldTests() =
     shouldSucceed (fun () -> true |> Should.be true)
     shouldSucceed (fun () -> 123 |> Should.be 123)
     shouldSucceed (fun () -> "foo" |> Should.be "foo")
+    shouldSucceed (fun () -> Some "foo" |> Should.be (Some "foo"))
 
     shouldFail (fun () -> false |> Should.be true)
     shouldFail (fun () -> 456 |> Should.be 123)
     shouldFail (fun () -> "bar" |> Should.be "foo")
+    shouldFail (fun () -> None |> Should.be (Some "foo"))
 
   [<TestMethod>]
   member _.BeEmpty() =
