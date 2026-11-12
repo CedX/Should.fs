@@ -35,7 +35,7 @@
 		<None Include="../Icon.png" Pack="true" PackagePath="" />
 		<None Include="../ReadMe.md" Pack="true" PackagePath="" />
 		<PackageReference Update="FSharp.Core" Version="11.0.101" />
-		<PackageReference Include="MSTest.TestFramework" Version="4.5.2" />
+		<PackageReference Include="MSTest.TestFramework" Version="4.5.3" />
 	</ItemGroup>
 
 	<ItemGroup>

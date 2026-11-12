@@ -20,7 +20,7 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-		<PackageReference Include="MSTest" Version="4.5.2" />
+		<PackageReference Include="MSTest" Version="4.5.3" />
 		<ProjectReference Include="../Sources/Should.fsproj" />
 	</ItemGroup>
 
